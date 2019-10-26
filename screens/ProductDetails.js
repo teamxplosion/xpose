@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, ActivityIndicator, View } from 'react-native';
+import { StyleSheet, ScrollView, ActivityIndicator, View, Image } from 'react-native';
 import { List, ListItem, Text, Card, Button } from 'react-native-elements';
 import Firebase from '../config/Firebase';
 import moment from 'moment'
@@ -52,6 +52,11 @@ class ProductDetails extends Component {
             <View style={styles.subContainer}>
               <View>
                 <Text h3>{this.state.product.title}</Text>
+                <Image
+                source={require("../assets/Food1.jpg")}
+                resizeMode="contain"
+                style={styles.image}
+                />
               </View>
               <View>
                 <Text h5>{moment(this.state.product.date.toDate()).format('MMM Do YYYY, h:mm:ss a')}</Text>
@@ -62,7 +67,15 @@ class ProductDetails extends Component {
             </View>
             <View style={styles.subContainer}>
               <View>
+                <Text h5>Company: {this.state.product.company}</Text>
+              </View>
+              <View>
                 <Text h5>{this.state.product.description}</Text>
+              </View>
+            </View>
+            <View style={styles.subContainer}>
+              <View>
+                <Text h5>Comments</Text>
               </View>
             </View>
           </Card>
@@ -70,19 +83,20 @@ class ProductDetails extends Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
-  container: {
+container: {
     flex: 1,
     padding: 20
-  },
-  subContainer: {
+},
+subContainer: {
     flex: 1,
     paddingTop: 20,
     paddingBottom: 20,
     borderBottomWidth: 2,
     borderBottomColor: '#CCCCCC',
-  },
-  activity: {
+},
+activity: {
     position: 'absolute',
     left: 0,
     right: 0,
@@ -90,10 +104,16 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  detailButton: {
+},
+    detailButton: {
     marginTop: 10
-  }
+},
+image: {
+    width: 150,
+    height: 150,
+    // marginTop: 10,
+    alignSelf: "center"
+},
 })
 
 export default ProductDetails;

@@ -5,6 +5,7 @@ import Login from '../screens/Login'
 import Signup from '../screens/Signup'
 import Profile from '../screens/Profile'
 import ProductsAndServices from '../screens/ProductsAndServices'
+import AddProduct from '../screens/AddProduct'
 import ProductDetails from '../screens/ProductDetails'
 import EnvironmentIssues from '../screens/EnvironmentIssues'
 
@@ -21,6 +22,9 @@ const SwitchNavigator = createStackNavigator(
         },
         ProductsAndServices: {
             screen: ProductsAndServices
+        },
+        AddProduct: {
+            screen: AddProduct
         },
         ProductDetails: {
             screen: ProductDetails

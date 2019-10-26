@@ -5,65 +5,73 @@ import { connect } from 'react-redux'
 import { login, updateEmail, updatePassword, getUser } from '../actions/user'
 import Firebase from '../config/Firebase'
 
-class Login extends React.Component {
+class AddProduct extends React.Component {
     
     //Header Styles
     static navigationOptions = {
         headerTitleStyle: { textAlign: 'center', flex: 1 },
-        title: 'Xplosion v1.0',
+        title: 'Add Product',
     };
 
-    //Dispatch login function
-    handleLogin = () => {
-        this.props.login()
-        this.props.navigation.navigate('ProductsAndServices')
+    constructor() {
+        super();
+        this.state = {
+          title: "",
+          description: "",
+          company: "",
+          image: "",
+          location: "Colombo, Sri Lanka",
+          userId: "",
+          date: new Date()
+        };
     }
 
     //Redirect if user is logged in
     componentDidMount = () => {
-        Firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                this.props.getUser(user.uid)
-                // if (this.props.user != null) {
-                //     this.props.navigation.navigate('ProductsAndServices')
-                // }
-            }
+        const { navigation } = this.props;
+    }
+
+    handleChange = (val, property) => {
+        const state = this.state
+        state[property] = val
+        this.setState(state)
+    }
+
+    handlePost = () => {
+        this.setState({
+            userId: this.props.user
+        });
+        Firebase.firestore().collection('productsAndServices').add(this.state).then(() => {
+            this.props.navigation.navigate('ProductsAndServices')
         })
     }
 
     render() {
-        if (this.props.user != null) {
-            this.props.navigation.navigate('ProductsAndServices')
-        }
         return (
             <View style={styles.container}>
-                <Image
+                {/* <Image
                 source={require("../assets/LOGO.png")}
                 resizeMode="contain"
                 style={styles.image}
+                /> */}
+                <TextInput
+                    style={styles.inputBox}
+                    onChangeText={(val) => this.handleChange(val,'title')}
+                    placeholder='Title'
                 />
                 <TextInput
                     style={styles.inputBox}
-                    value={this.props.user.email}
-                    onChangeText={email => this.props.updateEmail(email)}
-                    placeholder='Email'
-                    autoCapitalize='none'
+                    onChangeText={(val) => this.handleChange(val,'description')}
+                    placeholder='Description'
                 />
                 <TextInput
                     style={styles.inputBox}
-                    value={this.props.user.password}
-                    onChangeText={password => this.props.updatePassword(password)}
-                    placeholder='Password'
-                    secureTextEntry={true}
+                    onChangeText={(val) => this.handleChange(val,'company')}
+                    placeholder='Company'
                 />
-                <TouchableOpacity style={styles.button} onPress={() => this.props.login()}>
-                    <Text style={styles.buttonText}>Login</Text>
+                <TouchableOpacity style={styles.button} onPress={this.handlePost}>
+                    <Text style={styles.buttonText}>POST</Text>
                 </TouchableOpacity>
-                <Text style={{color: 'blue'}}
-                    onPress={() => this.props.navigation.navigate('Signup')}
-                >
-                    Don't have an account yet? Sign up
-                </Text>
             </View>
         )
     }
@@ -113,11 +121,6 @@ const styles = StyleSheet.create({
     },
 })
 
-//Action binding to dispatch action
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ updateEmail, updatePassword, login, getUser }, dispatch)
-}
-
 //Map firebase states to properties
 const mapStateToProps = state => {
     return {
@@ -126,6 +129,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Login)
+    mapStateToProps
+)(AddProduct)
