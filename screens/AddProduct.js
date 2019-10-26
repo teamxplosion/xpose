@@ -2,7 +2,7 @@ import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button, Image } from 'react-native'
 import { connect } from 'react-redux'
 import Firebase from '../config/Firebase'
-import ImagePicker from 'react-native-image-picker' 
+// import ImagePicker from 'react-native-image-picker' 
 
 class AddProduct extends React.Component {
     

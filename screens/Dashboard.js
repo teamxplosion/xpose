@@ -69,7 +69,8 @@ class Dashboard extends React.Component {
                         </View> 
                     </Card>
                 </ScrollView>
-            :   <ScrollView>
+            :   this.props.user.userType === "admin" ?
+            <ScrollView>
                     <TouchableOpacity style={styles.signout} onPress={
                         this.handleSignout
                         }>
@@ -96,6 +97,9 @@ class Dashboard extends React.Component {
                         </View> 
                     </Card>
                 </ScrollView>
+            : <View style={styles.activity}>
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
         )
     }
 }

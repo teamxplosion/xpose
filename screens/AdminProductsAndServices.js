@@ -31,11 +31,12 @@ class AdminProductsAndServices extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, type, date, approved } = doc.data()
+        const { title, description, type, date, approved, image } = doc.data()
         boards.push({
             key: doc.id,
             title,
             approved,
+            image,
             description,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
@@ -82,7 +83,7 @@ class AdminProductsAndServices extends Component {
                     </View>
                     <View style={styles.subContainer}>
                         <Image
-                        source={require('../assets/Food1.jpg')}
+                        source={{uri: item.image}}
                         resizeMode="contain"
                         style={styles.image}
                         />
