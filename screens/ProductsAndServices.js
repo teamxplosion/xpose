@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
+import { StyleSheet, View, ScrollView, ActivityIndicator, TouchableOpacity, Image } from "react-native";
 import Firebase from '../config/Firebase'
 import {  ListItem, Button, Icon, Card, Text } from 'react-native-elements';
 import { connect } from 'react-redux'
@@ -70,15 +70,22 @@ class ProductsAndServices extends Component {
                 this.state.boards.map((item, i) => (
                     <Card style={styles.container}>
                     <View style={styles.subContainer}>
-                    <View>
-                        <Text h3>{item.title}</Text>
+                        <View>
+                            <Text h3>{item.title}</Text>
+                        </View>
+                        <View>
+                            <Text h5>{item.date}</Text>
+                        </View>
+                        <View>
+                            <Text h5>By member Tharinda</Text>
+                        </View>
                     </View>
-                    <View>
-                        <Text h5>{item.date}</Text>
-                    </View>
-                    <View>
-                        <Text h5>{item.description}</Text>
-                    </View>
+                    <View style={styles.subContainer}>
+                        <Image
+                        source={require("../assets/Food1.jpg")}
+                        resizeMode="contain"
+                        style={styles.image}
+                        />
                     </View>
                     <View style={styles.detailButton}>
                         <Button
@@ -160,6 +167,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         width: 60,
+    },
+    image: {
+        width: 150,
+        height: 150,
+        // marginTop: 10,
+        alignSelf: "center",
+        paddingTop: 10
     },
 })
 

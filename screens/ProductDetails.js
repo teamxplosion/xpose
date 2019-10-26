@@ -53,7 +53,7 @@ class ProductDetails extends Component {
               <View>
                 <Text h3>{this.state.product.title}</Text>
                 <Image
-                source={require("../assets/LOGO.png")}
+                source={require("../assets/Food1.jpg")}
                 resizeMode="contain"
                 style={styles.image}
                 />
@@ -66,6 +66,9 @@ class ProductDetails extends Component {
               </View>
             </View>
             <View style={styles.subContainer}>
+              <View>
+                <Text h5>Company: {this.state.product.company}</Text>
+              </View>
               <View>
                 <Text h5>{this.state.product.description}</Text>
               </View>
