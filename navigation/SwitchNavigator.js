@@ -7,14 +7,12 @@ import Profile from '../screens/Profile'
 import ProductsAndServices from '../screens/ProductsAndServices'
 import AddProduct from '../screens/AddProduct'
 import ProductDetails from '../screens/ProductDetails'
-<<<<<<< HEAD
-import EnvironmentIssues from '../screens/EnvironmentIssues'
-import Dashboard from '../screens/Dashboard'
-=======
 import EnvironmentalIssues from '../screens/EnvironmentalIssues'
 import EnvironmentalIssueDetails from '../screens/EnvironmentalIssueDetails'
+import Dashboard from '../screens/Dashboard'
+import AdminProductsAndServices from '../screens/AdminProductsAndServices'
+import AdminProductDetails from '../screens/AdminProductDetails'
 
->>>>>>> cf898a7cc43cc9aec5132efbecbef916fc288eee
 
 const SwitchNavigator = createStackNavigator(
     {   
@@ -36,22 +34,21 @@ const SwitchNavigator = createStackNavigator(
         ProductDetails: {
             screen: ProductDetails
         },
-<<<<<<< HEAD
-        EnvironmentIssues: {
-            screen: EnvironmentIssues
-        },
         Dashboard: {
             screen: Dashboard
-        }
-
-=======
+        },
         EnvironmentalIssues: {
             screen: EnvironmentalIssues
         },
         EnvironmentalIssueDetails: {
             screen: EnvironmentalIssueDetails
         },
->>>>>>> cf898a7cc43cc9aec5132efbecbef916fc288eee
+        AdminProductsAndServices: {
+            screen: AdminProductsAndServices
+        },
+        AdminProductDetails: {
+            screen: AdminProductDetails
+        }
     },
     {
         initialRouteName: 'Login'

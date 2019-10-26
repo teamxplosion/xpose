@@ -19,11 +19,7 @@ class ProductsAndServices extends Component {
     }
     //Navigation Header
     static navigationOptions = {
-<<<<<<< HEAD
         title: 'Products/Servies',
-=======
-        title: 'ProductsAndServies'
->>>>>>> cf898a7cc43cc9aec5132efbecbef916fc288eee
     };
 
     //Fetch firestore data
@@ -50,15 +46,6 @@ class ProductsAndServices extends Component {
     });
     }
 
-<<<<<<< HEAD
-
-    //Add new issue
-    addIssue(userId){
-
-    }
-
-=======
->>>>>>> cf898a7cc43cc9aec5132efbecbef916fc288eee
     render() { 
         //Loading screen
         if(this.state.isLoading){

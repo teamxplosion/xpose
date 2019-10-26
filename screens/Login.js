@@ -16,10 +16,8 @@ class Login extends React.Component {
     //Dispatch login function
     handleLogin = () => {
         this.props.login()
-<<<<<<< HEAD
-        this.props.navigation.navigate('Dashboard')
-=======
->>>>>>> cf898a7cc43cc9aec5132efbecbef916fc288eee
+        this.props.navigation.navigate('Login')
+
     }
 
     //Redirect if user is logged in
@@ -27,29 +25,15 @@ class Login extends React.Component {
         Firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 this.props.getUser(user.uid)
-<<<<<<< HEAD
                 
                 if (this.props.user != null) {
                     this.props.navigation.navigate('Dashboard')
-=======
-<<<<<<< HEAD
-                // if (this.props.user != null) {
-                //     this.props.navigation.navigate('ProductsAndServices')
-                // }
-=======
-                if (this.props.user != null) {
-                    this.props.navigation.navigate('EnvironmentalIssues')
->>>>>>> cf898a7cc43cc9aec5132efbecbef916fc288eee
                 }
->>>>>>> b234ec6a60af9d985fe1e5c2186417303734ef31
             }
         })
     }
 
     render() {
-        if (this.props.user != null) {
-            this.props.navigation.navigate('ProductsAndServices')
-        }
         return (
             <View style={styles.container}>
                 <Image
