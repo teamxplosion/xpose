@@ -12,6 +12,8 @@ import EnvironmentalIssueDetails from '../screens/EnvironmentalIssueDetails'
 import Dashboard from '../screens/Dashboard'
 import AdminProductsAndServices from '../screens/AdminProductsAndServices'
 import AdminProductDetails from '../screens/AdminProductDetails'
+import AdminEnvironmentIssues from '../screens/AdminEnvironmentIssues'
+import AdminEnvironmentIssueDetails from '../screens/AdminEnvironmentissueDetails'
 
 
 const SwitchNavigator = createStackNavigator(
@@ -48,6 +50,12 @@ const SwitchNavigator = createStackNavigator(
         },
         AdminProductDetails: {
             screen: AdminProductDetails
+        },
+        AdminEnvironmentIssues: {
+            screen: AdminEnvironmentIssues
+        },
+        AdminEnvironmentIssueDetails: {
+            screen: AdminEnvironmentIssueDetails
         }
     },
     {

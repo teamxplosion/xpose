@@ -1,9 +1,8 @@
 import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button, Image } from 'react-native'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { login, updateEmail, updatePassword, getUser } from '../actions/user'
 import Firebase from '../config/Firebase'
+import ImagePicker from 'react-native-image-picker' 
 
 class AddProduct extends React.Component {
     

@@ -5,7 +5,7 @@ import {  ListItem, Button, Icon, Card, Text } from 'react-native-elements';
 import { connect } from 'react-redux'
 import moment from 'moment'
 
-class ProductsAndServices extends Component {
+class AdminProductsAndServices extends Component {
   
     //Connects to the firebase collection
     constructor() {
@@ -185,4 +185,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ProductsAndServices)
+export default connect(mapStateToProps)(AdminProductsAndServices)
