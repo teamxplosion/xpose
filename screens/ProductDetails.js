@@ -64,11 +64,11 @@ class ProductDetails extends Component {
               <View>
                 <Text h5>{this.state.product.location}</Text>
               </View>
+              <View>
+                <Text h5>{this.state.product.company}</Text>
+              </View>
             </View>
             <View style={styles.subContainer}>
-              <View>
-                <Text h5>Company: {this.state.product.company}</Text>
-              </View>
               <View>
                 <Text h5>{this.state.product.description}</Text>
               </View>
@@ -80,6 +80,7 @@ class ProductDetails extends Component {
             </View>
           </Card>
       </ScrollView>
+
     );
   }
 }
@@ -87,7 +88,7 @@ class ProductDetails extends Component {
 const styles = StyleSheet.create({
 container: {
     flex: 1,
-    padding: 20
+    padding: 20,
 },
 subContainer: {
     flex: 1,

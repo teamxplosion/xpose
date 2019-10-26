@@ -9,6 +9,7 @@ import AddProduct from '../screens/AddProduct'
 import ProductDetails from '../screens/ProductDetails'
 import EnvironmentalIssues from '../screens/EnvironmentalIssues'
 import EnvironmentalIssueDetails from '../screens/EnvironmentalIssueDetails'
+import Dashboard from '../screens/Dashboard'
 
 
 const SwitchNavigator = createStackNavigator(
@@ -37,6 +38,9 @@ const SwitchNavigator = createStackNavigator(
         EnvironmentalIssueDetails: {
             screen: EnvironmentalIssueDetails
         },
+        Dashboard: {
+            screen: Dashboard
+        }
     },
     {
         initialRouteName: 'Login'
