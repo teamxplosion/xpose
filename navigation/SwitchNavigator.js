@@ -7,7 +7,9 @@ import Profile from '../screens/Profile'
 import ProductsAndServices from '../screens/ProductsAndServices'
 import AddProduct from '../screens/AddProduct'
 import ProductDetails from '../screens/ProductDetails'
-import EnvironmentIssues from '../screens/EnvironmentIssues'
+import EnvironmentalIssues from '../screens/EnvironmentalIssues'
+import EnvironmentalIssueDetails from '../screens/EnvironmentalIssueDetails'
+
 
 const SwitchNavigator = createStackNavigator(
     {   
@@ -29,10 +31,12 @@ const SwitchNavigator = createStackNavigator(
         ProductDetails: {
             screen: ProductDetails
         },
-        EnvironmentIssues: {
-            screen: EnvironmentIssues
-        }
-
+        EnvironmentalIssues: {
+            screen: EnvironmentalIssues
+        },
+        EnvironmentalIssueDetails: {
+            screen: EnvironmentalIssueDetails
+        },
     },
     {
         initialRouteName: 'Login'
