@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 
 class EnvironmentIssues extends Component {
-  
+  //Connect to firebase collection
   constructor() {
     super();
     this.ref = Firebase.firestore().collection('environment');
@@ -17,13 +17,16 @@ class EnvironmentIssues extends Component {
     };
   }
 
+  //Navigation header
   static navigationOptions = {
     title: 'EnvironmentIssues',
   };
 
+  //Fetch firestore data
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
+  //Pushes fetched firestore data to an array
   onCollectionUpdate = (querySnapshot) => {
     const boards = [];
     querySnapshot.forEach((doc) => {
