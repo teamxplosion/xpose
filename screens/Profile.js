@@ -11,6 +11,7 @@ class Profile extends React.Component {
         this.props.navigation.navigate('Login')
     }
 
+
     render() {
         return (
             <View style={styles.container}>
