@@ -7,16 +7,19 @@ import Firebase from '../config/Firebase'
 
 class Login extends React.Component {
     
+    //Header Styles
     static navigationOptions = {
         headerTitleStyle: { textAlign: 'center', flex: 1 },
-        title: 'Xpose',
+        title: 'Xplosion v1.0',
     };
 
+    //Dispatch login function
     handleLogin = () => {
         this.props.login()
         this.props.navigation.navigate('ProductsAndServices')
     }
 
+    //Redirect if user is logged in
     componentDidMount = () => {
         Firebase.auth().onAuthStateChanged(user => {
             if (user) {
@@ -107,11 +110,12 @@ const styles = StyleSheet.create({
     },
 })
 
-
+//Action binding to dispatch actions
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({ updateEmail, updatePassword, login, getUser }, dispatch)
 }
 
+//Map firebase states to properties
 const mapStateToProps = state => {
     return {
         user: state.user

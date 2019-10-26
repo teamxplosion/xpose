@@ -1,5 +1,5 @@
 import React from 'react'
-import { createSwitchNavigator, createAppContainer } from 'react-navigation'
+import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import Login from '../screens/Login'
 import Signup from '../screens/Signup'
@@ -24,24 +24,6 @@ const SwitchNavigator = createStackNavigator(
         ProductDetails: {
             screen: ProductDetails
         }
-        // PastHires: {
-        //     screen: PastHires
-        // },
-        // PastHireDetails: {
-        //     screen: PastHireDetails,
-        // },
-        // AssignedHires: {
-        //     screen: AssignedHires
-        // },
-        // AssignedHireDetails: {
-        //     screen: AssignedHireDetails
-        // },
-        // UpcomingHires: {
-        //     screen: UpcomingHires
-        // },
-        // UpcomingHireDetails: {
-        //     screen: UpcomingHireDetails
-        // }
     },
     {
         initialRouteName: 'Login'

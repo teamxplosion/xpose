@@ -19,6 +19,7 @@ class ProductDetails extends Component {
     
   }
   
+  //Connects to firebase collection and fetches data
   componentDidMount() {
     const { navigation } = this.props;
     const ref = Firebase.firestore().collection('productsAndServices').doc(navigation.getParam('productId'));
@@ -37,6 +38,7 @@ class ProductDetails extends Component {
   }
 
   render() {
+    //Loading screen
     if(this.state.isLoading){
       return(
         <View style={styles.activity}>
