@@ -4,7 +4,7 @@ import { List, ListItem, Text, Card, Button } from 'react-native-elements';
 import Firebase from '../config/Firebase';
 import moment from 'moment'
 
-class ProductDetails extends Component {
+class AdminProductDetails extends Component {
   static navigationOptions = {
     title: 'Details',
   };
@@ -169,4 +169,4 @@ image: {
 },
 })
 
-export default ProductDetails;
+export default AdminProductDetails;

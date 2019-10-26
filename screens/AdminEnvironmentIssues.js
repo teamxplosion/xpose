@@ -31,10 +31,11 @@ class AdminEnvironmentalIssues extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, date, image, video, location, userId } = doc.data()
+        const { title, description, date, image, video, location, userId, approved } = doc.data()
         boards.push({
             key: doc.id,
             title,
+            approved,
             description,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
@@ -61,13 +62,8 @@ class AdminEnvironmentalIssues extends Component {
         }
         return (
         <ScrollView style={styles.container}>
-                <TouchableOpacity style={styles.add} onPress={
-                    this.addIssue(this.props.user.id)
-                    }>
-                    <Text style={styles.addButtonText}>+Add</Text>
-                </TouchableOpacity>
             {
-                this.state.boards.map((item, i) => (
+                this.state.boards.filter(item => item.approved === false).map((item, i) => (
                     <Card style={styles.container}>
                     <View style={styles.subContainer}>
                         <View>
@@ -95,7 +91,7 @@ class AdminEnvironmentalIssues extends Component {
                         title='View'
                         buttonStyle={{backgroundColor: '#007bff'}}
                         onPress={() => {
-                            this.props.navigation.navigate('EnvironmentalIssueDetails', {
+                            this.props.navigation.navigate('AdminEnvironmentIssueDetails', {
                             issueId: item.key,
                         });}} />
                     </View>
