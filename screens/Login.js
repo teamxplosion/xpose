@@ -15,7 +15,7 @@ class Login extends React.Component {
     //Dispatch login function
     handleLogin = () => {
         this.props.login()
-        this.props.navigation.navigate('Profile')
+        this.props.navigation.navigate('ProductsAndServices')
     }
 
     //Redirect if user is logged in
@@ -24,7 +24,7 @@ class Login extends React.Component {
             if (user) {
                 this.props.getUser(user.uid)
                 if (this.props.user != null) {
-                    this.props.navigation.navigate('Profile')
+                    this.props.navigation.navigate('ProductsAndServices')
                 }
             }
         })
