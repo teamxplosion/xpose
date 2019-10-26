@@ -5,12 +5,12 @@ import {  ListItem, Button, Icon, Card, Text } from 'react-native-elements';
 import { connect } from 'react-redux'
 import moment from 'moment'
 
-class ProductsAndServices extends Component {
+class EnvironmentalIssues extends Component {
   
     //Connects to the firebase collection
     constructor() {
         super();
-        this.ref = Firebase.firestore().collection('productsAndServices');
+        this.ref = Firebase.firestore().collection('environment');
         this.unsubscribe = null;
         this.state = {
         isLoading: true,
@@ -19,11 +19,7 @@ class ProductsAndServices extends Component {
     }
     //Navigation Header
     static navigationOptions = {
-<<<<<<< HEAD
-        title: 'Products/Servies',
-=======
-        title: 'ProductsAndServies'
->>>>>>> cf898a7cc43cc9aec5132efbecbef916fc288eee
+        title: 'Environmental Issues',
     };
 
     //Fetch firestore data
@@ -35,11 +31,10 @@ class ProductsAndServices extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, type, date, approved } = doc.data()
+        const { title, description, date, image, video, location, userId } = doc.data()
         boards.push({
             key: doc.id,
             title,
-            approved,
             description,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
@@ -50,15 +45,11 @@ class ProductsAndServices extends Component {
     });
     }
 
-<<<<<<< HEAD
-
     //Add new issue
     addIssue(userId){
 
     }
 
-=======
->>>>>>> cf898a7cc43cc9aec5132efbecbef916fc288eee
     render() { 
         //Loading screen
         if(this.state.isLoading){
@@ -68,15 +59,15 @@ class ProductsAndServices extends Component {
             </View>
             )
         }
-
         return (
         <ScrollView style={styles.container}>
-                <TouchableOpacity style={styles.add} onPress={() => this.props.navigation.navigate('AddProduct')}>
+                <TouchableOpacity style={styles.add} onPress={
+                    this.addIssue(this.props.user.id)
+                    }>
                     <Text style={styles.addButtonText}>+Add</Text>
                 </TouchableOpacity>
             {
-                
-                this.state.boards.filter(item => item.approved === true).map((item, i) => (
+                this.state.boards.map((item, i) => (
                     <Card style={styles.container}>
                     <View style={styles.subContainer}>
                         <View>
@@ -86,12 +77,12 @@ class ProductsAndServices extends Component {
                             <Text h5>{item.date}</Text>
                         </View>
                         <View>
-                            <Text h5>By member Tharinda</Text>
+                            <Text h5>By member Nipuni</Text>
                         </View>
                     </View>
                     <View style={styles.subContainer}>
                         <Image
-                        source={require('../assets/Food1.jpg')}
+                        source={require("../assets/Environment1.jpg")}
                         resizeMode="contain"
                         style={styles.image}
                         />
@@ -104,8 +95,8 @@ class ProductsAndServices extends Component {
                         title='View'
                         buttonStyle={{backgroundColor: '#007bff'}}
                         onPress={() => {
-                            this.props.navigation.navigate('ProductDetails', {
-                            productId: item.key,
+                            this.props.navigation.navigate('EnvironmentalIssueDetails', {
+                            issueId: item.key,
                         });}} />
                     </View>
 
@@ -120,7 +111,7 @@ class ProductsAndServices extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 1
+        padding: 20
     },
     subContainer: {
         flex: 1,
@@ -178,8 +169,8 @@ const styles = StyleSheet.create({
         width: 60,
     },
     image: {
-        width: 150,
-        height: 150,
+        width: 200,
+        height: 200,
         // marginTop: 10,
         alignSelf: "center",
         paddingTop: 10
@@ -194,4 +185,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ProductsAndServices)
+export default connect(mapStateToProps)(EnvironmentalIssues)

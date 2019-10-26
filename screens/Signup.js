@@ -79,6 +79,7 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ updateEmail, updatePassword, signup }, dispatch)
 }
 
+//Map firebase states to properties 
 const mapStateToProps = state => {
     return {
         user: state.user

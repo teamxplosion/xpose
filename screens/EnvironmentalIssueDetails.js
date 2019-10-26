@@ -4,7 +4,7 @@ import { List, ListItem, Text, Card, Button } from 'react-native-elements';
 import Firebase from '../config/Firebase';
 import moment from 'moment'
 
-class ProductDetails extends Component {
+class EnvironmenatalIssueDetails extends Component {
   static navigationOptions = {
     title: 'Details',
   };
@@ -22,11 +22,11 @@ class ProductDetails extends Component {
   //Connects to firebase collection and fetches data
   componentDidMount() {
     const { navigation } = this.props;
-    const ref = Firebase.firestore().collection('productsAndServices').doc(navigation.getParam('productId'));
+    const ref = Firebase.firestore().collection('environment').doc(navigation.getParam('issueId'));
     ref.get().then((doc) => {
       if (doc.exists) {
         this.setState({
-          product: doc.data(),
+          issue: doc.data(),
           key: doc.id,
           isLoading: false
         });
@@ -51,26 +51,23 @@ class ProductDetails extends Component {
           <Card style={styles.container}>
             <View style={styles.subContainer}>
               <View>
-                <Text h3>{this.state.product.title}</Text>
+                <Text h3>{this.state.issue.title}</Text>
                 <Image
-                source={require("../assets/Food1.jpg")}
+                source={require("../assets/Environment1.jpg")}
                 resizeMode="contain"
                 style={styles.image}
                 />
               </View>
               <View>
-                <Text h5>{moment(this.state.product.date.toDate()).format('MMM Do YYYY, h:mm:ss a')}</Text>
+                <Text h5>{moment(this.state.issue.date.toDate()).format('MMM Do YYYY, h:mm:ss a')}</Text>
               </View>
               <View>
-                <Text h5>{this.state.product.location}</Text>
-              </View>
-              <View>
-                <Text h5>{this.state.product.company}</Text>
+                <Text h5>{this.state.issue.location}</Text>
               </View>
             </View>
             <View style={styles.subContainer}>
               <View>
-                <Text h5>{this.state.product.description}</Text>
+                <Text h5>{this.state.issue.description}</Text>
               </View>
             </View>
             <View style={styles.subContainer}>
@@ -80,15 +77,13 @@ class ProductDetails extends Component {
             </View>
           </Card>
       </ScrollView>
-
     );
   }
 }
-
 const styles = StyleSheet.create({
 container: {
     flex: 1,
-    padding: 20,
+    padding: 20
 },
 subContainer: {
     flex: 1,
@@ -117,4 +112,4 @@ image: {
 },
 })
 
-export default ProductDetails;
+export default EnvironmenatalIssueDetails;
