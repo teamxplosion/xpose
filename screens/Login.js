@@ -14,7 +14,7 @@ class Login extends React.Component {
 
     handleLogin = () => {
         this.props.login()
-        this.props.navigation.navigate('ProductsAndServices')
+        this.props.navigation.navigate('ProductAndServices')
     }
 
     componentDidMount = () => {
@@ -22,7 +22,7 @@ class Login extends React.Component {
             if (user) {
                 this.props.getUser(user.uid)
                 if (this.props.user != null) {
-                    this.props.navigation.navigate('ProductsAndServices')
+                    this.props.navigation.navigate('ProductAndServices')
                 }
             }
         })
