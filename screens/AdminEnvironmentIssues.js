@@ -5,7 +5,7 @@ import {  ListItem, Button, Icon, Card, Text } from 'react-native-elements';
 import { connect } from 'react-redux'
 import moment from 'moment'
 
-class EnvironmentalIssues extends Component {
+class AdminEnvironmentalIssues extends Component {
   
     //Connects to the firebase collection
     constructor() {
@@ -67,7 +67,7 @@ class EnvironmentalIssues extends Component {
                     <Text style={styles.addButtonText}>+Add</Text>
                 </TouchableOpacity>
             {
-                this.state.boards.filter(item => item.approved === true).map((item, i) => (
+                this.state.boards.map((item, i) => (
                     <Card style={styles.container}>
                     <View style={styles.subContainer}>
                         <View>
@@ -185,4 +185,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(EnvironmentalIssues)
+export default connect(mapStateToProps)(AdminEnvironmentalIssues)

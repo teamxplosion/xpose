@@ -17,21 +17,6 @@ class Dashboard extends React.Component {
     }
     
     onCollectionUpdate = () => {
-        // const hires = [];
-        // querySnapshot.forEach((doc) => {
-        //   const { driverId, hireStatus,hireType, pickupDatetime, pickupLocation, customerId, customerName } = doc.data()
-        //   hires.push({
-        //     key: doc.id,
-        //     driverId,
-        //     hireStatus,
-        //     hireType,
-        //     pickupLocation,
-        //     customerId,
-        //     customerName,
-        //     pickupDatetime: moment(pickupDatetime).format('MMM Do YYYY, h:mm:ss a'),
-        //     pickupDate : pickupDatetime
-        //   });
-        // });
         this.setState({
           hires,
           isLoading: false,
@@ -72,7 +57,7 @@ class Dashboard extends React.Component {
                                 <Text style={styles.buttonText}>Products/Services</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.button} onPress={() => {
-                                this.props.navigation.navigate('EnvironmentIssues');
+                                this.props.navigation.navigate('EnvironmentalIssues');
                             }}>
                                 <Text style={styles.buttonText}>Environment</Text>
                             </TouchableOpacity>
@@ -85,23 +70,32 @@ class Dashboard extends React.Component {
                     </Card>
                 </ScrollView>
             :   <ScrollView>
-            <Card style={styles.cardContainer}>
-                <View style={styles.subContainer}>
-                    <TouchableOpacity style={styles.button} onPress={() => {
-                        this.props.navigation.navigate('ProductsAndServices')
-                    }}>
-                        <Text style={styles.buttonText}>Products/Services</Text>
+                    <TouchableOpacity style={styles.signout} onPress={
+                        this.handleSignout
+                        }>
+                        <Text style={styles.signoutButtonText}>Logout</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => {
-                        this.props.navigation.navigate('EnvironmentalIssues');
-                    }}>
-                        <Text style={styles.buttonText}>Environment</Text>
-                    </TouchableOpacity>
+                    <Card style={styles.cardContainer}>
+                        <View style={styles.subContainer}>
+                            <TouchableOpacity style={styles.button} onPress={() => {
+                                this.props.navigation.navigate('AdminProductsAndServices')
+                            }}>
+                                <Text style={styles.buttonText}>Products/Services</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.button} onPress={() => {
+                                // this.props.navigation.navigate('AdminEnvironmentIssues');
+                            }}>
+                                <Text style={styles.buttonText}>Environment</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.button} onPress={() => {
+                                // this.props.navigation.navigate('PastHires');
+                            }}>
+                                <Text style={styles.buttonText}>Crime</Text>
+                            </TouchableOpacity>
 
-                </View> 
-            </Card>
-        </ScrollView>
-
+                        </View> 
+                    </Card>
+                </ScrollView>
         )
     }
 }

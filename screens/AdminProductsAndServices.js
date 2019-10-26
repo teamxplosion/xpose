@@ -5,12 +5,12 @@ import {  ListItem, Button, Icon, Card, Text } from 'react-native-elements';
 import { connect } from 'react-redux'
 import moment from 'moment'
 
-class EnvironmentalIssues extends Component {
+class ProductsAndServices extends Component {
   
     //Connects to the firebase collection
     constructor() {
         super();
-        this.ref = Firebase.firestore().collection('environment');
+        this.ref = Firebase.firestore().collection('productsAndServices');
         this.unsubscribe = null;
         this.state = {
         isLoading: true,
@@ -19,7 +19,7 @@ class EnvironmentalIssues extends Component {
     }
     //Navigation Header
     static navigationOptions = {
-        title: 'Environmental Issues',
+        title: 'Products/Servies',
     };
 
     //Fetch firestore data
@@ -31,10 +31,11 @@ class EnvironmentalIssues extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, date, image, video, location, userId } = doc.data()
+        const { title, description, type, date, approved } = doc.data()
         boards.push({
             key: doc.id,
             title,
+            approved,
             description,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
@@ -43,11 +44,6 @@ class EnvironmentalIssues extends Component {
         boards,
         isLoading: false,
     });
-    }
-
-    //Add new issue
-    addIssue(userId){
-
     }
 
     render() { 
@@ -59,15 +55,19 @@ class EnvironmentalIssues extends Component {
             </View>
             )
         }
+        if(!this.state.boards.filter(item => item.approved === false).length){
+            return(
+                <View style={styles.activity}>
+                    <Text h3>No Products/Services for approval</Text>
+                </View>
+            )
+        }  
+
         return (
         <ScrollView style={styles.container}>
-                <TouchableOpacity style={styles.add} onPress={
-                    this.addIssue(this.props.user.id)
-                    }>
-                    <Text style={styles.addButtonText}>+Add</Text>
-                </TouchableOpacity>
             {
-                this.state.boards.filter(item => item.approved === true).map((item, i) => (
+                
+                this.state.boards.filter(item => item.approved === false).map((item, i) => (
                     <Card style={styles.container}>
                     <View style={styles.subContainer}>
                         <View>
@@ -77,12 +77,12 @@ class EnvironmentalIssues extends Component {
                             <Text h5>{item.date}</Text>
                         </View>
                         <View>
-                            <Text h5>By member Nipuni</Text>
+                            <Text h5>By member Tharinda</Text>
                         </View>
                     </View>
                     <View style={styles.subContainer}>
                         <Image
-                        source={require("../assets/Environment1.jpg")}
+                        source={require('../assets/Food1.jpg')}
                         resizeMode="contain"
                         style={styles.image}
                         />
@@ -95,8 +95,8 @@ class EnvironmentalIssues extends Component {
                         title='View'
                         buttonStyle={{backgroundColor: '#007bff'}}
                         onPress={() => {
-                            this.props.navigation.navigate('EnvironmentalIssueDetails', {
-                            issueId: item.key,
+                            this.props.navigation.navigate('AdminProductDetails', {
+                            productId: item.key,
                         });}} />
                     </View>
 
@@ -111,7 +111,7 @@ class EnvironmentalIssues extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20
+        padding: 1
     },
     subContainer: {
         flex: 1,
@@ -169,8 +169,8 @@ const styles = StyleSheet.create({
         width: 60,
     },
     image: {
-        width: 200,
-        height: 200,
+        width: 150,
+        height: 150,
         // marginTop: 10,
         alignSelf: "center",
         paddingTop: 10
@@ -185,4 +185,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(EnvironmentalIssues)
+export default connect(mapStateToProps)(ProductsAndServices)

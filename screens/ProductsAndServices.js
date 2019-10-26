@@ -19,7 +19,7 @@ class ProductsAndServices extends Component {
     }
     //Navigation Header
     static navigationOptions = {
-        title: 'ProductsAndServies'
+        title: 'Products/Servies',
     };
 
     //Fetch firestore data
@@ -31,12 +31,13 @@ class ProductsAndServices extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, type, date, approved } = doc.data()
+        const { title, description, type, date, approved, image } = doc.data()
         boards.push({
             key: doc.id,
             title,
             approved,
             description,
+            image,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
         });
@@ -77,10 +78,11 @@ class ProductsAndServices extends Component {
                         </View>
                     </View>
                     <View style={styles.subContainer}>
+                        {console.log(item.image)}
                         <Image
-                        source={require('../assets/Food1.jpg')}
+                        source={{uri: item.image}}
                         resizeMode="contain"
-                        style={styles.image}
+                        style={styles.image} 
                         />
                     </View>
                     <View style={styles.detailButton}>

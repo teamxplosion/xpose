@@ -16,7 +16,8 @@ class Login extends React.Component {
     //Dispatch login function
     handleLogin = () => {
         this.props.login()
-        this.props.navigation.navigate('Dashboard')
+        this.props.navigation.navigate('Login')
+
     }
 
     //Redirect if user is logged in
@@ -24,7 +25,6 @@ class Login extends React.Component {
         Firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 this.props.getUser(user.uid)
-
                 
                 if (this.props.user != null) {
                     this.props.navigation.navigate('Dashboard')
