@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { updateEmail, updatePassword, signup } from '../actions/user'
 
 class Signup extends React.Component {
+    //Action to dispatch signout
     handleSignUp = () => {
         this.props.signup()
         this.props.navigation.navigate('Profile')
@@ -73,10 +74,12 @@ const styles = StyleSheet.create({
     }
 })
 
+//Map firestore actions to properties
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({ updateEmail, updatePassword, signup }, dispatch)
 }
 
+//Map firebase states to properties 
 const mapStateToProps = state => {
     return {
         user: state.user
