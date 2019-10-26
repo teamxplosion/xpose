@@ -7,9 +7,10 @@ import Firebase from '../config/Firebase'
 
 class Login extends React.Component {
     
+    //Header Styles
     static navigationOptions = {
         headerTitleStyle: { textAlign: 'center', flex: 1 },
-        title: 'Xpose',
+        title: 'Xplosion v1.0',
     };
 
     //Dispatch login function

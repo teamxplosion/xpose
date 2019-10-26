@@ -19,6 +19,7 @@ class ProductDetails extends Component {
     
   }
   
+  //Connects to firebase collection and fetches data
   componentDidMount() {
     const { navigation } = this.props;
     const ref = Firebase.firestore().collection('productsAndServices').doc(navigation.getParam('productId'));
@@ -37,6 +38,7 @@ class ProductDetails extends Component {
   }
 
   render() {
+    //Loading screen
     if(this.state.isLoading){
       return(
         <View style={styles.activity}>
@@ -60,7 +62,7 @@ class ProductDetails extends Component {
             </View>
             <View style={styles.subContainer}>
               <View>
-                <Text h3>{this.state.product.description}</Text>
+                <Text h5>{this.state.product.description}</Text>
               </View>
             </View>
           </Card>
