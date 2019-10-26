@@ -7,6 +7,7 @@ import Profile from '../screens/Profile'
 import ProductsAndServices from '../screens/ProductsAndServices'
 import ProductDetails from '../screens/ProductDetails'
 import EnvironmentIssues from '../screens/EnvironmentIssues'
+import Dashboard from '../screens/Dashboard'
 
 const SwitchNavigator = createStackNavigator(
     {   
@@ -27,6 +28,9 @@ const SwitchNavigator = createStackNavigator(
         },
         EnvironmentIssues: {
             screen: EnvironmentIssues
+        },
+        Dashboard: {
+            screen: Dashboard
         }
 
     },

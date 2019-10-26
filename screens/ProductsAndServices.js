@@ -19,7 +19,7 @@ class ProductsAndServices extends Component {
     }
     //Navigation Header
     static navigationOptions = {
-        title: 'ProductsAndServies',
+        title: 'Products/Servies',
     };
 
     //Fetch firestore data
@@ -31,10 +31,11 @@ class ProductsAndServices extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, type, date } = doc.data()
+        const { title, description, type, date, approved } = doc.data()
         boards.push({
             key: doc.id,
             title,
+            approved,
             description,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
@@ -44,6 +45,7 @@ class ProductsAndServices extends Component {
         isLoading: false,
     });
     }
+
 
     //Add new issue
     addIssue(userId){
@@ -59,6 +61,7 @@ class ProductsAndServices extends Component {
             </View>
             )
         }
+
         return (
         <ScrollView style={styles.container}>
                 <TouchableOpacity style={styles.add} onPress={
@@ -67,7 +70,8 @@ class ProductsAndServices extends Component {
                     <Text style={styles.addButtonText}>+Add</Text>
                 </TouchableOpacity>
             {
-                this.state.boards.map((item, i) => (
+                
+                this.state.boards.filter(item => item.approved === true).map((item, i) => (
                     <Card style={styles.container}>
                     <View style={styles.subContainer}>
                         <View>
@@ -82,7 +86,7 @@ class ProductsAndServices extends Component {
                     </View>
                     <View style={styles.subContainer}>
                         <Image
-                        source={require("../assets/Food1.jpg")}
+                        source={require('../assets/Food1.jpg')}
                         resizeMode="contain"
                         style={styles.image}
                         />
@@ -111,7 +115,7 @@ class ProductsAndServices extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20
+        padding: 1
     },
     subContainer: {
         flex: 1,
