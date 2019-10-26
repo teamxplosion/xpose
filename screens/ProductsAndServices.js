@@ -48,7 +48,6 @@ class ProductsAndServices extends Component {
           </View>
         )
       }
-      console.log(this.state.boards)
     return (
       <ScrollView style={styles.container}>
           {
@@ -72,7 +71,10 @@ class ProductsAndServices extends Component {
                     color={'blue'}
                     title='View'
                     buttonStyle={{backgroundColor: 'blue'}}
-                    onPress={() => {}} />
+                    onPress={() => {
+                        this.props.navigation.navigate('ProductDetails', {
+                        productId: item.key,
+                      });}} />
                 </View>
 
               </Card>
