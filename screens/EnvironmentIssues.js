@@ -51,7 +51,6 @@ class EnvironmentIssues extends Component {
           </View>
         )
       }
-      console.log(this.state.boards)
     return (
       <ScrollView style={styles.container}>
           {
@@ -87,17 +86,17 @@ class EnvironmentIssues extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20
-      },
-      subContainer: {
-        flex: 1,
-        paddingTop: 20,
-        paddingBottom: 20,
-        borderBottomWidth: 2,
-        borderBottomColor: '#CCCCCC',
-      },
+  container: {
+    flex: 1,
+    padding: 20
+  },
+  subContainer: {
+    flex: 1,
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: '#CCCCCC',
+  },
   item: {
     padding: 10,
     fontSize: 18,
