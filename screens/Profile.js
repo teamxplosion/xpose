@@ -9,6 +9,8 @@ class Profile extends React.Component {
     handleSignout = () => {
         Firebase.auth().signOut()
         this.props.navigation.navigate('Login')
+
+        
     }
 
     render() {

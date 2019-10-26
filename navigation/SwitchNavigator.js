@@ -5,6 +5,7 @@ import Login from '../screens/Login'
 import Signup from '../screens/Signup'
 import Profile from '../screens/Profile'
 import Dashboard from '../screens/Dashboard'
+import ProductsAndServices from '../screens/ProductsAndServices'
 
 const SwitchNavigator = createStackNavigator(
     {   
@@ -17,9 +18,9 @@ const SwitchNavigator = createStackNavigator(
         Profile: {
             screen: Profile
         },
-        // Dashboard: {
-        //     screen: Dashboard
-        // },
+        ProductsAndServices: {
+            screen: ProductsAndServices
+        },
         // PastHires: {
         //     screen: PastHires
         // },
