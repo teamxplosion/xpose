@@ -22,7 +22,8 @@ class AddProduct extends React.Component {
           image: "",
           location: "Colombo, Sri Lanka",
           userId: "",
-          date: new Date()
+          date: new Date(),
+          approved: false
         };
     }
 
