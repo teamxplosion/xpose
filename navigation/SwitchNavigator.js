@@ -4,9 +4,8 @@ import { createStackNavigator } from 'react-navigation-stack'
 import Login from '../screens/Login'
 import Signup from '../screens/Signup'
 import Profile from '../screens/Profile'
-import Dashboard from '../screens/Dashboard'
 import ProductsAndServices from '../screens/ProductsAndServices'
-import EnvironmentIssues from '../screens/EnvironmentIssues'
+import ProductDetails from '../screens/ProductDetails'
 
 const SwitchNavigator = createStackNavigator(
     {   
@@ -22,8 +21,8 @@ const SwitchNavigator = createStackNavigator(
         ProductsAndServices: {
             screen: ProductsAndServices
         },
-        EnvironmentIssues: {
-            screen: EnvironmentIssues
+        ProductDetails: {
+            screen: ProductDetails
         }
         // PastHires: {
         //     screen: PastHires
