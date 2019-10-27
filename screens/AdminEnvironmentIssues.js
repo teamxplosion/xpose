@@ -31,12 +31,13 @@ class AdminEnvironmentalIssues extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, date, image, video, location, userId, approved } = doc.data()
+        const { title, description, date, image, video, location, userId, approved, userName } = doc.data()
         boards.push({
             key: doc.id,
             title,
             approved,
             description,
+            userName,
             image,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
@@ -74,7 +75,7 @@ class AdminEnvironmentalIssues extends Component {
                             <Text h5>{item.date}</Text>
                         </View>
                         <View>
-                            <Text h5>By member Nipuni</Text>
+                            <Text h5>By {item.userName}</Text>
                         </View>
                     </View>
                     <View style={styles.subContainer}>

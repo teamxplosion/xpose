@@ -64,6 +64,9 @@ class EnvironmenatalIssueDetails extends Component {
               <View>
                 <Text h5>{this.state.issue.location}</Text>
               </View>
+              <View>
+                <Text h5>{this.state.issue.userName}</Text>
+              </View>
             </View>
             <View style={styles.subContainer}>
               <View>

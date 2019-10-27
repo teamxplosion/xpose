@@ -4,6 +4,7 @@ export const LOGIN = 'LOGIN'
 export const UPDATE_EMAIL = 'UPDATE_EMAIL'
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 export const SIGNUP = 'SIGNUP'
+export const FETCH_USERS = 'FETCH_USERS'
 
 
 //Firebase Authentication for login
@@ -71,5 +72,17 @@ export const updatePassword = password => {
     return {
         type: UPDATE_PASSWORD,
         payload: password
+    }
+}
+
+export const getUsers = () => {
+    return async(dispatch, getState) => {
+        try{
+            const user = await db.collection('users').get()
+
+            dispatch({type: FETCH_USERS, payload: user.docs.map(doc => doc.data())})
+        } catch (e){
+            alert(e)
+        }
     }
 }

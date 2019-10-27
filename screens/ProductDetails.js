@@ -62,6 +62,9 @@ class ProductDetails extends Component {
                 <Text h5>{moment(this.state.product.date.toDate()).format('MMM Do YYYY, h:mm:ss a')}</Text>
               </View>
               <View>
+                <Text h5>{this.state.product.userName}</Text>
+              </View>
+              <View>
                 <Text h5>{this.state.product.location}</Text>
               </View>
               <View>
