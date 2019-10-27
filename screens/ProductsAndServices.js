@@ -31,13 +31,14 @@ class ProductsAndServices extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, type, date, approved, image } = doc.data()
+        const { title, description, type, date, approved, image, userName } = doc.data()
         boards.push({
             key: doc.id,
             title,
             approved,
             description,
             image,
+            userName,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
         });
@@ -74,7 +75,7 @@ class ProductsAndServices extends Component {
                             <Text h5>{item.date}</Text>
                         </View>
                         <View>
-                            <Text h5>By member Tharinda</Text>
+                            <Text h5>By {item.userName}</Text>
                         </View>
                     </View>
                     <View style={styles.subContainer}>

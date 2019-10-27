@@ -3,6 +3,8 @@ import { StyleSheet, View, ScrollView, ActivityIndicator, TouchableOpacity, Imag
 import Firebase from '../config/Firebase'
 import {  ListItem, Button, Icon, Card, Text } from 'react-native-elements';
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getUsers } from '../actions/user'
 import moment from 'moment'
 
 class AdminProductsAndServices extends Component {
@@ -11,6 +13,7 @@ class AdminProductsAndServices extends Component {
     constructor() {
         super();
         this.ref = Firebase.firestore().collection('productsAndServices');
+        this.userRef = Firebase.firestore().collection('users');
         this.unsubscribe = null;
         this.state = {
         isLoading: true,
@@ -22,6 +25,9 @@ class AdminProductsAndServices extends Component {
         title: 'Products/Servies',
     };
 
+    componentWillMount() {
+        this.props.getUsers()
+    }
     //Fetch firestore data
     componentDidMount() {
         this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
@@ -31,12 +37,14 @@ class AdminProductsAndServices extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, type, date, approved } = doc.data()
+        const { title, description, type, date, approved, userName } = doc.data()
         boards.push({
             key: doc.id,
             title,
             approved,
             description,
+            userName,
+            postedUser : "Tharinda",
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
         });
@@ -61,7 +69,16 @@ class AdminProductsAndServices extends Component {
                     <Text h3>No Products/Services for approval</Text>
                 </View>
             )
-        }  
+        } 
+        // if(this.props.users){
+        //     this.state.boards.forEach((board) => {
+        //     for (let [key, user] of Object.entries(this.props.users)) {
+        //         if(key == board.userId){
+        //             board.postedUser = user.name
+        //         }
+        //     }
+        //     })
+        // } 
 
         return (
         <ScrollView style={styles.container}>
@@ -77,7 +94,7 @@ class AdminProductsAndServices extends Component {
                             <Text h5>{item.date}</Text>
                         </View>
                         <View>
-                            <Text h5>By member Tharinda</Text>
+                            <Text h5>By {item.userName}</Text>
                         </View>
                     </View>
                     <View style={styles.subContainer}>
@@ -181,8 +198,13 @@ const styles = StyleSheet.create({
 //Map user state to properties 
 const mapStateToProps = state => {
   return{
-      user: state.user
+      user: state.user,
+      users: state.users
   }
 }
 
-export default connect(mapStateToProps)(AdminProductsAndServices)
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ getUsers }, dispatch)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(AdminProductsAndServices)

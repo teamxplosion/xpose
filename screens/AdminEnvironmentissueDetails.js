@@ -100,6 +100,9 @@ class AdminEnvironmenatalIssueDetails extends Component {
                 <Text h5>{moment(this.state.issue.date.toDate()).format('MMM Do YYYY, h:mm:ss a')}</Text>
               </View>
               <View>
+                <Text h5>{this.state.issue.userName}</Text>
+              </View>
+              <View>
                 <Text h5>{this.state.issue.location}</Text>
               </View>
             </View>
