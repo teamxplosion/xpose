@@ -78,13 +78,18 @@ class ProductsAndServices extends Component {
                             <Text h5>By {item.userName}</Text>
                         </View>
                     </View>
-                    <View style={styles.subContainer}>
-                        <Image
-                        source={{uri: item.image}}
-                        resizeMode="contain"
-                        style={styles.image} 
-                        />
-                    </View>
+                    {item.image ? 
+                        <View style={styles.subContainer}>
+                            <Image
+                            source={{uri: item.image}}
+                            resizeMode="contain"
+                            style={styles.image} 
+                            />
+                        </View>
+                    : null
+                    
+                    }
+                    
                     <View style={styles.detailButton}>
                         <Button
                         medium

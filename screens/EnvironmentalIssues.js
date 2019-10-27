@@ -148,6 +148,9 @@ class EnvironmentalIssues extends Component {
                                 <Text h5>{item.date}</Text>
                             </View>
                             <View>
+                                <Text h5>{item.location}</Text>
+                            </View>
+                            <View>
                                 <Text h5>By {item.userName}</Text>
                             </View>
                         </View>

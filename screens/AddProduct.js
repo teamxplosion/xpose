@@ -2,7 +2,7 @@ import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button, Image } from 'react-native'
 import { connect } from 'react-redux'
 import Firebase from '../config/Firebase'
-import ImagePicker from 'react-native-image-picker' 
+// import ImagePicker from 'react-native-image-picker' 
 // var ImagePicker = require('react-native-image-picker')
 
 class AddProduct extends React.Component {
@@ -36,32 +36,38 @@ class AddProduct extends React.Component {
         const state = this.state
         state[property] = val
         this.setState(state)
-    }
-
-    handlePost = () => {
         this.setState({
             userId: this.props.user.uid,
             userName: this.props.user.name
         });
-        Firebase.storage().child("ProductsAndServices").put(this.state.image).then((snapshot) => {
-            snapshot.ref.getDownloadURL().then((url) => {
-                this.setState({image: url})
-            })
-            Firebase.firestore().collection('productsAndServices').add(this.state).then(() => {
-                this.props.navigation.navigate('ProductsAndServices')
-            })
+        
+    }
+
+    handlePost = () => {
+        // this.setState({
+        //     userId: this.props.user.uid,
+        //     userName: this.props.user.name
+        // });
+        Firebase.firestore().collection('productsAndServices').add(this.state).then(() => {
+            this.props.navigation.navigate('ProductsAndServices')
         })
+        // Firebase.storage().child("ProductsAndServices").put(this.state.image).then((snapshot) => {
+        //     snapshot.ref.getDownloadURL().then((url) => {
+        //         this.setState({image: url})
+        //     })
+            
+        // })
     }
 
     handleChoosePhoto = () => {
         const options = {
           noData: true,
         }
-        ImagePicker.launchImageLibrary(options, response => {
-          if (response.uri) {
-            this.setState({ image: response })
-          }
-        })
+        // ImagePicker.launchImageLibrary(options, response => {
+        //   if (response.uri) {
+        //     this.setState({ image: response })
+        //   }
+        // })
       }
     
 
