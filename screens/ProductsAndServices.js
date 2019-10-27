@@ -13,8 +13,9 @@ class ProductsAndServices extends Component {
         this.ref = Firebase.firestore().collection('productsAndServices');
         this.unsubscribe = null;
         this.state = {
-        isLoading: true,
-        boards: []
+            isLoading: true,
+            boards: [],
+            filterPosts: false
         };
     }
     //Navigation Header
@@ -78,13 +79,18 @@ class ProductsAndServices extends Component {
                             <Text h5>By {item.userName}</Text>
                         </View>
                     </View>
-                    <View style={styles.subContainer}>
-                        <Image
-                        source={{uri: item.image}}
-                        resizeMode="contain"
-                        style={styles.image} 
-                        />
-                    </View>
+                    {item.image ? 
+                        <View style={styles.subContainer}>
+                            <Image
+                            source={{uri: item.image}}
+                            resizeMode="contain"
+                            style={styles.image} 
+                            />
+                        </View>
+                    : null
+                    
+                    }
+                    
                     <View style={styles.detailButton}>
                         <Button
                         medium

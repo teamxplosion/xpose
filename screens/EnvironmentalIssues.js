@@ -40,6 +40,7 @@ class EnvironmentalIssues extends Component {
             userName,
             approved,
             image,
+            location,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
         });
@@ -49,9 +50,9 @@ class EnvironmentalIssues extends Component {
     });
     }
 
-    addIssue(){
+    // addIssue(){
 
-    }
+    // }
 
     issuesNearMe() {
         this.setState({
@@ -68,13 +69,12 @@ class EnvironmentalIssues extends Component {
             </View>
             )
         }
+       
         return (
-        <ScrollView style={styles.container}>
-                <TouchableOpacity style={styles.add} onPress={
-                    this.addIssue(this.props.user.id)
-                    }>
-                    <Text style={styles.addButtonText}>+Add</Text>
-                </TouchableOpacity>
+            <ScrollView style={styles.container}>
+                    <TouchableOpacity style={styles.add} onPress={() => this.props.navigation.navigate('AddEnvironmentalIssue')}>
+                        <Text style={styles.addButtonText}>+Add</Text>
+                    </TouchableOpacity>
                 {
                     this.state.filterPosts === false ? 
                     <View style={styles.nearMe}>
@@ -99,41 +99,79 @@ class EnvironmentalIssues extends Component {
                     </View>
                 }
                 
-            {
-                this.state.boards.filter(item => item.approved === true && this.state.filterPosts === false).map((item, i) => (
+            {   
+                this.state.filterPosts === false ?
+                    this.state.boards.filter(item => item.approved === true).map((item, i) => (
+                        <Card style={styles.container}>
+                        <View style={styles.subContainer}>
+                            <View>
+                                <Text h3>{item.title}</Text>
+                            </View>
+                            <View>
+                                <Text h5>{item.date}</Text>
+                            </View>
+                            <View>
+                                <Text h5>By {item.userName}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.subContainer}>
+                            <Image
+                            source={{uri: item.image}}
+                            resizeMode="contain"
+                            style={styles.image}
+                            />
+                        </View>
+                        <View style={styles.detailButton}>
+                            <Button
+                            medium
+                            backgroundColor={'#007bff'}
+                            color={'#007bff'}
+                            title='View'
+                            buttonStyle={{backgroundColor: '#007bff'}}
+                            onPress={() => {
+                                this.props.navigation.navigate('EnvironmentalIssueDetails', {
+                                issueId: item.key,
+                            });}} />
+                        </View>
+                    </Card>
+                    ))
+                :   
+                this.state.boards.filter(item => item.approved === true && item.location.includes('Colombo, Sri Lanka')).map((item, i) => (
                     <Card style={styles.container}>
-                    <View style={styles.subContainer}>
-                        <View>
-                            <Text h3>{item.title}</Text>
+                        <View style={styles.subContainer}>
+                            <View>
+                                <Text h3>{item.title}</Text>
+                            </View>
+                            <View>
+                                <Text h5>{item.date}</Text>
+                            </View>
+                            <View>
+                                <Text h5>{item.location}</Text>
+                            </View>
+                            <View>
+                                <Text h5>By {item.userName}</Text>
+                            </View>
                         </View>
-                        <View>
-                            <Text h5>{item.date}</Text>
+                        <View style={styles.subContainer}>
+                            <Image
+                            source={{uri: item.image}}
+                            resizeMode="contain"
+                            style={styles.image} 
+                            />
                         </View>
-                        <View>
-                            <Text h5>By {item.userName}</Text>
+                        <View style={styles.detailButton}>
+                            <Button
+                            medium
+                            backgroundColor={'#007bff'}
+                            color={'#007bff'}
+                            title='View'
+                            buttonStyle={{backgroundColor: '#007bff'}}
+                            onPress={() => {
+                                this.props.navigation.navigate('EnvironmentalIssueDetails', {
+                                issueId: item.key,
+                            });}} />
                         </View>
-                    </View>
-                    <View style={styles.subContainer}>
-                        <Image
-                        source={{uri: item.image}}
-                        resizeMode="contain"
-                        style={styles.image}
-                        />
-                    </View>
-                    <View style={styles.detailButton}>
-                        <Button
-                        medium
-                        backgroundColor={'#007bff'}
-                        color={'#007bff'}
-                        title='View'
-                        buttonStyle={{backgroundColor: '#007bff'}}
-                        onPress={() => {
-                            this.props.navigation.navigate('EnvironmentalIssueDetails', {
-                            issueId: item.key,
-                        });}} />
-                    </View>
-
-                </Card>
+                    </Card>
                 ))
             }
         </ScrollView>

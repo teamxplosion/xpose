@@ -4,7 +4,7 @@ import { List, ListItem, Text, Card, Button } from 'react-native-elements';
 import Firebase from '../config/Firebase';
 import moment from 'moment'
 
-class ProductDetails extends Component {
+class CriminalActivityDetails extends Component {
   static navigationOptions = {
     title: 'Details',
   };
@@ -22,11 +22,11 @@ class ProductDetails extends Component {
   //Connects to firebase collection and fetches data
   componentDidMount() {
     const { navigation } = this.props;
-    const ref = Firebase.firestore().collection('productsAndServices').doc(navigation.getParam('productId'));
+    const ref = Firebase.firestore().collection('crime').doc(navigation.getParam('crimeId'));
     ref.get().then((doc) => {
       if (doc.exists) {
         this.setState({
-          product: doc.data(),
+          crime: doc.data(),
           key: doc.id,
           isLoading: false
         });
@@ -51,10 +51,10 @@ class ProductDetails extends Component {
           <Card style={styles.container}>
             <View style={styles.subContainer}>
               <View>
-                <Text h3>{this.state.product.title}</Text>
-                {this.state.product.image ?
+                <Text h3>{this.state.crime.title}</Text>
+                {this.state.crime.image ? 
                   <Image
-                  source={{uri: this.state.product.image}}
+                  source={{uri: this.state.crime.image}}
                   resizeMode="contain"
                   style={styles.image}
                   />
@@ -62,21 +62,15 @@ class ProductDetails extends Component {
                 }
               </View>
               <View>
-                <Text h5>{moment(this.state.product.date.toDate()).format('MMM Do YYYY, h:mm:ss a')}</Text>
+                <Text h5>{moment(this.state.crime.date.toDate()).format('MMM Do YYYY, h:mm:ss a')}</Text>
               </View>
               <View>
-                <Text h5>{this.state.product.userName}</Text>
-              </View>
-              <View>
-                <Text h5>{this.state.product.location}</Text>
-              </View>
-              <View>
-                <Text h5>{this.state.product.company}</Text>
+                <Text h5>{this.state.crime.location}</Text>
               </View>
             </View>
             <View style={styles.subContainer}>
               <View>
-                <Text h5>{this.state.product.description}</Text>
+                <Text h5>{this.state.crime.description}</Text>
               </View>
             </View>
             <View style={styles.subContainer}>
@@ -123,4 +117,4 @@ image: {
 },
 })
 
-export default ProductDetails;
+export default CriminalActivityDetails;
