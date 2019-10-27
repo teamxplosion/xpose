@@ -13,8 +13,9 @@ class ProductsAndServices extends Component {
         this.ref = Firebase.firestore().collection('productsAndServices');
         this.unsubscribe = null;
         this.state = {
-        isLoading: true,
-        boards: []
+            isLoading: true,
+            boards: [],
+            filterPosts: false
         };
     }
     //Navigation Header

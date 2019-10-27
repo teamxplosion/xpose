@@ -62,9 +62,9 @@ class Dashboard extends React.Component {
                                 <Text style={styles.buttonText}>Environment</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.button} onPress={() => {
-                                // this.props.navigation.navigate('PastHires');
+                                this.props.navigation.navigate('CriminalActivities');
                             }}>
-                                <Text style={styles.buttonText}>Crime</Text>
+                                <Text style={styles.buttonText}>Criminal Activities</Text>
                             </TouchableOpacity>
                         </View> 
                     </Card>

@@ -50,9 +50,9 @@ class EnvironmentalIssues extends Component {
     });
     }
 
-    addIssue(){
+    // addIssue(){
 
-    }
+    // }
 
     issuesNearMe() {
         this.setState({
@@ -71,12 +71,10 @@ class EnvironmentalIssues extends Component {
         }
        
         return (
-        <ScrollView style={styles.container}>
-                <TouchableOpacity style={styles.add} onPress={
-                    this.addIssue(this.props.user.id)
-                    }>
-                    <Text style={styles.addButtonText}>+Add</Text>
-                </TouchableOpacity>
+            <ScrollView style={styles.container}>
+                    <TouchableOpacity style={styles.add} onPress={() => this.props.navigation.navigate('AddEnvironmentalIssue')}>
+                        <Text style={styles.addButtonText}>+Add</Text>
+                    </TouchableOpacity>
                 {
                     this.state.filterPosts === false ? 
                     <View style={styles.nearMe}>
@@ -158,7 +156,7 @@ class EnvironmentalIssues extends Component {
                             <Image
                             source={{uri: item.image}}
                             resizeMode="contain"
-                            style={styles.image}
+                            style={styles.image} 
                             />
                         </View>
                         <View style={styles.detailButton}>

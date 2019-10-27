@@ -3,9 +3,8 @@ import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button, Image } fr
 import { connect } from 'react-redux'
 import Firebase from '../config/Firebase'
 // import ImagePicker from 'react-native-image-picker' 
-// var ImagePicker = require('react-native-image-picker')
 
-class AddProduct extends React.Component {
+class AddCriminalActivity extends React.Component {
     
     //Header Styles
     static navigationOptions = {
@@ -36,40 +35,16 @@ class AddProduct extends React.Component {
         const state = this.state
         state[property] = val
         this.setState(state)
-        this.setState({
-            userId: this.props.user.uid,
-            userName: this.props.user.name
-        });
-
     }
 
     handlePost = () => {
-        // this.setState({
-        //     userId: this.props.user.uid,
-        //     userName: this.props.user.name
-        // });
-        Firebase.firestore().collection('productsAndServices').add(this.state).then(() => {
-            this.props.navigation.navigate('ProductsAndServices')
+        this.setState({
+            userId: this.props.user
+        });
+        Firebase.firestore().collection('crime').add(this.state).then(() => {
+            this.props.navigation.navigate('CriminalActivities')
         })
-        // Firebase.storage().child("ProductsAndServices").put(this.state.image).then((snapshot) => {
-        //     snapshot.ref.getDownloadURL().then((url) => {
-        //         this.setState({image: url})
-        //     })
-            
-        // })
     }
-
-    handleChoosePhoto = () => {
-        const options = {
-          noData: true,
-        }
-        // ImagePicker.launchImageLibrary(options, response => {
-        //   if (response.uri) {
-        //     this.setState({ image: response })
-        //   }
-        // })
-      }
-    
 
     render() {
         return (
@@ -89,13 +64,11 @@ class AddProduct extends React.Component {
                     onChangeText={(val) => this.handleChange(val,'description')}
                     placeholder='Description'
                 />
-                <TextInput
-                    style={styles.inputBox}
-                    onChangeText={(val) => this.handleChange(val,'company')}
-                    placeholder='Company'
-                />
-                <TouchableOpacity style={styles.button} onPress={this.handleChoosePhoto}>
+                <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>UPLOAD PHOTO</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>UPLOAD VIDEO</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={this.handlePost}>
                     <Text style={styles.buttonText}>POST</Text>
@@ -104,15 +77,6 @@ class AddProduct extends React.Component {
         )
     }
 }
-
-const options = {
-    title: 'Select Avatar',
-    customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
-    storageOptions: {
-      skipBackup: true,
-      path: 'images',
-    },
-  };
 
 const styles = StyleSheet.create({
     container: {
@@ -167,4 +131,4 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps
-)(AddProduct)
+)(AddCriminalActivity)

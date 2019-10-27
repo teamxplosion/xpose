@@ -14,6 +14,10 @@ import AdminProductsAndServices from '../screens/AdminProductsAndServices'
 import AdminProductDetails from '../screens/AdminProductDetails'
 import AdminEnvironmentIssues from '../screens/AdminEnvironmentIssues'
 import AdminEnvironmentIssueDetails from '../screens/AdminEnvironmentissueDetails'
+import AddEnvironmentalIssue from '../screens/AddEnvironmentalIssue'
+import CriminalActivities from '../screens/CriminalActivities'
+import AddCriminalActivity from '../screens/AddCriminalActivity'
+import CriminalActivityDetails from '../screens/CriminalActivityDetails'
 
 
 const SwitchNavigator = createStackNavigator(
@@ -45,6 +49,9 @@ const SwitchNavigator = createStackNavigator(
         EnvironmentalIssueDetails: {
             screen: EnvironmentalIssueDetails
         },
+        AddEnvironmentalIssue: {
+            screen: AddEnvironmentalIssue
+        },
         AdminProductsAndServices: {
             screen: AdminProductsAndServices
         },
@@ -56,7 +63,16 @@ const SwitchNavigator = createStackNavigator(
         },
         AdminEnvironmentIssueDetails: {
             screen: AdminEnvironmentIssueDetails
-        }
+        },
+        CriminalActivities: {
+            screen: CriminalActivities
+        },
+        AddCriminalActivity: {
+            screen: AddCriminalActivity
+        },
+        CriminalActivityDetails: {
+            screen: CriminalActivityDetails
+        },
     },
     {
         initialRouteName: 'Login'
