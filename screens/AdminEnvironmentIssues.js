@@ -38,6 +38,7 @@ class AdminEnvironmentalIssues extends Component {
             approved,
             description,
             userName,
+            image,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
         });
@@ -79,7 +80,7 @@ class AdminEnvironmentalIssues extends Component {
                     </View>
                     <View style={styles.subContainer}>
                         <Image
-                        source={require("../assets/Environment1.jpg")}
+                        source={{uri: item.image}}
                         resizeMode="contain"
                         style={styles.image}
                         />
@@ -108,7 +109,7 @@ class AdminEnvironmentalIssues extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20
+        padding: 1
     },
     subContainer: {
         flex: 1,

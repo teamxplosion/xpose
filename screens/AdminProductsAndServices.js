@@ -37,11 +37,12 @@ class AdminProductsAndServices extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, type, date, approved, userName } = doc.data()
+        const { title, description, type, date, approved, image, userName } = doc.data()
         boards.push({
             key: doc.id,
             title,
             approved,
+            image,
             description,
             userName,
             postedUser : "Tharinda",
@@ -99,7 +100,7 @@ class AdminProductsAndServices extends Component {
                     </View>
                     <View style={styles.subContainer}>
                         <Image
-                        source={require('../assets/Food1.jpg')}
+                        source={{uri: item.image}}
                         resizeMode="contain"
                         style={styles.image}
                         />

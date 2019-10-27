@@ -79,7 +79,6 @@ class ProductsAndServices extends Component {
                         </View>
                     </View>
                     <View style={styles.subContainer}>
-                        {console.log(item.image)}
                         <Image
                         source={{uri: item.image}}
                         resizeMode="contain"
@@ -159,7 +158,7 @@ const styles = StyleSheet.create({
         marginRight: 2,
         alignSelf: 'flex-end',
         marginBottom: 5,
-        paddingVertical: 5,
+        paddingVertical: 3,
         alignItems: 'center',
         backgroundColor: '#007bff',
         borderColor: '#007bff',
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
         width: 60,
     },
     image: {
-        width: 150,
+        width: 200,
         height: 150,
         // marginTop: 10,
         alignSelf: "center",

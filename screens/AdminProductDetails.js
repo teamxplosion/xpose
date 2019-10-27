@@ -91,7 +91,7 @@ class AdminProductDetails extends Component {
               <View>
                 <Text h3>{this.state.product.title}</Text>
                 <Image
-                source={require("../assets/Food1.jpg")}
+                source={{uri: this.state.product.image}}
                 resizeMode="contain"
                 style={styles.image}
                 />

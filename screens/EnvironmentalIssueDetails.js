@@ -53,7 +53,7 @@ class EnvironmenatalIssueDetails extends Component {
               <View>
                 <Text h3>{this.state.issue.title}</Text>
                 <Image
-                source={require("../assets/Environment1.jpg")}
+                source={{uri: this.state.issue.image}}
                 resizeMode="contain"
                 style={styles.image}
                 />

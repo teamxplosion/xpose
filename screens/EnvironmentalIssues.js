@@ -13,8 +13,9 @@ class EnvironmentalIssues extends Component {
         this.ref = Firebase.firestore().collection('environment');
         this.unsubscribe = null;
         this.state = {
-        isLoading: true,
-        boards: []
+            isLoading: true,
+            boards: [],
+            filterPosts: false
         };
     }
     //Navigation Header
@@ -31,12 +32,14 @@ class EnvironmentalIssues extends Component {
     onCollectionUpdate = (querySnapshot) => {
         const boards = [];
         querySnapshot.forEach((doc) => {
-        const { title, description, date, image, video, location, userId, userName } = doc.data()
+        const { title, description, date, image, video, location, userId, userName, approved } = doc.data()
         boards.push({
             key: doc.id,
             title,
             description,
             userName,
+            approved,
+            image,
             date: moment(date.toDate()).format('MMM Do YYYY, h:mm:ss a')
         });
         });
@@ -46,9 +49,14 @@ class EnvironmentalIssues extends Component {
     });
     }
 
-    //Add new issue
-    addIssue(userId){
+    addIssue(){
 
+    }
+
+    issuesNearMe() {
+        this.setState({
+          filterPosts: !this.state.filterPosts,
+        });
     }
 
     render() { 
@@ -67,8 +75,32 @@ class EnvironmentalIssues extends Component {
                     }>
                     <Text style={styles.addButtonText}>+Add</Text>
                 </TouchableOpacity>
+                {
+                    this.state.filterPosts === false ? 
+                    <View style={styles.nearMe}>
+                        <Button
+                        medium
+                        backgroundColor={'#28a745'}
+                        color={'#28a745'}
+                        title='Near Me'
+                        buttonStyle={{backgroundColor: '#28a745'}}
+                        onPress={() => this.issuesNearMe()
+                        } />
+                    </View> : 
+                    <View style={styles.nearMe}>
+                        <Button
+                        medium
+                        backgroundColor={'#28a745'}
+                        color={'#28a745'}
+                        title='All Posts'
+                        buttonStyle={{backgroundColor: '#28a745'}}
+                        onPress={() => this.issuesNearMe()
+                        } />
+                    </View>
+                }
+                
             {
-                this.state.boards.filter(item => item.approved === true).map((item, i) => (
+                this.state.boards.filter(item => item.approved === true && this.state.filterPosts === false).map((item, i) => (
                     <Card style={styles.container}>
                     <View style={styles.subContainer}>
                         <View>
@@ -83,7 +115,7 @@ class EnvironmentalIssues extends Component {
                     </View>
                     <View style={styles.subContainer}>
                         <Image
-                        source={require("../assets/Environment1.jpg")}
+                        source={{uri: item.image}}
                         resizeMode="contain"
                         style={styles.image}
                         />
@@ -112,7 +144,7 @@ class EnvironmentalIssues extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20
+        padding: 1
     },
     subContainer: {
         flex: 1,
@@ -169,14 +201,19 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: 60,
     },
+    nearMe: {
+        marginTop: 10,
+        width: 200,
+        alignSelf: 'center'
+    },
     image: {
         width: 200,
         height: 200,
-        // marginTop: 10,
         alignSelf: "center",
         paddingTop: 10
     },
 })
+
 
 
 //Map user state to properties 
