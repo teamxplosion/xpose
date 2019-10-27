@@ -2,7 +2,8 @@ import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button, Image } from 'react-native'
 import { connect } from 'react-redux'
 import Firebase from '../config/Firebase'
-// import ImagePicker from 'react-native-image-picker' 
+//import ImagePicker from 'react-native-image-picker' 
+// var ImagePicker = require('react-native-image-picker')
 
 class AddProduct extends React.Component {
     
@@ -39,12 +40,30 @@ class AddProduct extends React.Component {
 
     handlePost = () => {
         this.setState({
-            userId: this.props.user
+            userId: this.props.user.uid,
+            userName: this.props.user.name
         });
-        Firebase.firestore().collection('productsAndServices').add(this.state).then(() => {
-            this.props.navigation.navigate('ProductsAndServices')
+        Firebase.storage().child("ProductsAndServices").put(this.state.image).then((snapshot) => {
+            snapshot.ref.getDownloadURL().then((url) => {
+                this.setState({image: url})
+            })
+            Firebase.firestore().collection('productsAndServices').add(this.state).then(() => {
+                this.props.navigation.navigate('ProductsAndServices')
+            })
         })
     }
+
+    handleChoosePhoto = () => {
+        const options = {
+          noData: true,
+        }
+        ImagePicker.launchImageLibrary(options, response => {
+          if (response.uri) {
+            this.setState({ image: response })
+          }
+        })
+      }
+    
 
     render() {
         return (
@@ -69,6 +88,9 @@ class AddProduct extends React.Component {
                     onChangeText={(val) => this.handleChange(val,'company')}
                     placeholder='Company'
                 />
+                <TouchableOpacity style={styles.button} onPress={this.handleChoosePhoto}>
+                    <Text style={styles.buttonText}>UPLOAD PHOTO</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={this.handlePost}>
                     <Text style={styles.buttonText}>POST</Text>
                 </TouchableOpacity>
@@ -76,6 +98,15 @@ class AddProduct extends React.Component {
         )
     }
 }
+
+const options = {
+    title: 'Select Avatar',
+    customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+    storageOptions: {
+      skipBackup: true,
+      path: 'images',
+    },
+  };
 
 const styles = StyleSheet.create({
     container: {
