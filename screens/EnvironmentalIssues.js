@@ -111,7 +111,7 @@ class EnvironmentalIssues extends Component {
                                 <Text h5>{item.date}</Text>
                             </View>
                             <View>
-                                <Text h5>By member Nipuni</Text>
+                                <Text h5>By {item.userName}</Text>
                             </View>
                         </View>
                         <View style={styles.subContainer}>

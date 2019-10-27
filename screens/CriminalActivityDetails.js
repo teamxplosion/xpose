@@ -52,11 +52,14 @@ class CriminalActivityDetails extends Component {
             <View style={styles.subContainer}>
               <View>
                 <Text h3>{this.state.crime.title}</Text>
-                <Image
-                source={{uri: this.state.crime.image}}
-                resizeMode="contain"
-                style={styles.image}
-                />
+                {this.state.crime.image ? 
+                  <Image
+                  source={{uri: this.state.crime.image}}
+                  resizeMode="contain"
+                  style={styles.image}
+                  />
+                : null
+                }
               </View>
               <View>
                 <Text h5>{moment(this.state.crime.date.toDate()).format('MMM Do YYYY, h:mm:ss a')}</Text>

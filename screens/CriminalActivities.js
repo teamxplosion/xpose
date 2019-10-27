@@ -73,17 +73,17 @@ class CriminalActivities extends Component {
                         <View>
                             <Text h5>{item.date}</Text>
                         </View>
-                        <View>
-                            <Text h5>By member Tharinda</Text>
+                    </View>
+                    {item.image ? 
+                        <View style={styles.subContainer}>
+                            <Image
+                            source={{uri: item.image}}
+                            resizeMode="contain"
+                            style={styles.image} 
+                            />
                         </View>
-                    </View>
-                    <View style={styles.subContainer}>
-                        <Image
-                        source={{uri: item.image}}
-                        resizeMode="contain"
-                        style={styles.image} 
-                        />
-                    </View>
+                    : null
+                    }
                     <View style={styles.detailButton}>
                         <Button
                         medium
