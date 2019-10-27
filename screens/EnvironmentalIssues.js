@@ -48,9 +48,9 @@ class EnvironmentalIssues extends Component {
     });
     }
 
-    addIssue(){
+    // addIssue(){
 
-    }
+    // }
 
     issuesNearMe() {
         this.setState({
@@ -68,75 +68,50 @@ class EnvironmentalIssues extends Component {
             )
         }
         return (
-        <ScrollView style={styles.container}>
-                <TouchableOpacity style={styles.add} onPress={
-                    this.addIssue(this.props.user.id)
-                    }>
-                    <Text style={styles.addButtonText}>+Add</Text>
-                </TouchableOpacity>
+            <ScrollView style={styles.container}>
+                    <TouchableOpacity style={styles.add} onPress={() => this.props.navigation.navigate('AddEnvironmentalIssue')}>
+                        <Text style={styles.addButtonText}>+Add</Text>
+                    </TouchableOpacity>
                 {
-                    this.state.filterPosts === false ? 
-                    <View style={styles.nearMe}>
-                        <Button
-                        medium
-                        backgroundColor={'#28a745'}
-                        color={'#28a745'}
-                        title='Near Me'
-                        buttonStyle={{backgroundColor: '#28a745'}}
-                        onPress={() => this.issuesNearMe()
-                        } />
-                    </View> : 
-                    <View style={styles.nearMe}>
-                        <Button
-                        medium
-                        backgroundColor={'#28a745'}
-                        color={'#28a745'}
-                        title='All Posts'
-                        buttonStyle={{backgroundColor: '#28a745'}}
-                        onPress={() => this.issuesNearMe()
-                        } />
-                    </View>
+                    
+                    this.state.boards.filter(item => item.approved === true).map((item, i) => (
+                        <Card style={styles.container}>
+                        <View style={styles.subContainer}>
+                            <View>
+                                <Text h3>{item.title}</Text>
+                            </View>
+                            <View>
+                                <Text h5>{item.date}</Text>
+                            </View>
+                            <View>
+                                <Text h5>By member Nipuni</Text>
+                            </View>
+                        </View>
+                        <View style={styles.subContainer}>
+                            <Image
+                            source={{uri: item.image}}
+                            resizeMode="contain"
+                            style={styles.image} 
+                            />
+                        </View>
+                        <View style={styles.detailButton}>
+                            <Button
+                            medium
+                            backgroundColor={'#007bff'}
+                            color={'#007bff'}
+                            title='View'
+                            buttonStyle={{backgroundColor: '#007bff'}}
+                            onPress={() => {
+                                this.props.navigation.navigate('EnvironmentalIssueDetails', {
+                                issueId: item.key,
+                            });}} />
+                        </View>
+    
+                    </Card>
+                    ))
                 }
-                
-            {
-                this.state.boards.filter(item => item.approved === true && this.state.filterPosts === false).map((item, i) => (
-                    <Card style={styles.container}>
-                    <View style={styles.subContainer}>
-                        <View>
-                            <Text h3>{item.title}</Text>
-                        </View>
-                        <View>
-                            <Text h5>{item.date}</Text>
-                        </View>
-                        <View>
-                            <Text h5>By member Nipuni</Text>
-                        </View>
-                    </View>
-                    <View style={styles.subContainer}>
-                        <Image
-                        source={{uri: item.image}}
-                        resizeMode="contain"
-                        style={styles.image}
-                        />
-                    </View>
-                    <View style={styles.detailButton}>
-                        <Button
-                        medium
-                        backgroundColor={'#007bff'}
-                        color={'#007bff'}
-                        title='View'
-                        buttonStyle={{backgroundColor: '#007bff'}}
-                        onPress={() => {
-                            this.props.navigation.navigate('EnvironmentalIssueDetails', {
-                            issueId: item.key,
-                        });}} />
-                    </View>
-
-                </Card>
-                ))
-            }
-        </ScrollView>
-        );
+            </ScrollView>
+            );
     }
 }
 
