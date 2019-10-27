@@ -43,14 +43,17 @@ class AddProduct extends React.Component {
             userId: this.props.user.uid,
             userName: this.props.user.name
         });
-        Firebase.storage().child("ProductsAndServices").put(this.state.image).then((snapshot) => {
-            snapshot.ref.getDownloadURL().then((url) => {
-                this.setState({image: url})
-            })
-            Firebase.firestore().collection('productsAndServices').add(this.state).then(() => {
-                this.props.navigation.navigate('ProductsAndServices')
-            })
+        Firebase.firestore().collection('productsAndServices').add(this.state).then(() => {
+            this.props.navigation.navigate('ProductsAndServices')
         })
+        // Firebase.storage().child("ProductsAndServices").put(this.state.image).then((snapshot) => {
+        //     snapshot.ref.getDownloadURL().then((url) => {
+        //         this.setState({image: url})
+        //     })
+        //     Firebase.firestore().collection('productsAndServices').add(this.state).then(() => {
+        //         this.props.navigation.navigate('ProductsAndServices')
+        //     })
+        // })
     }
 
     handleChoosePhoto = () => {
