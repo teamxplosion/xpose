@@ -11,7 +11,7 @@
     "compose": "^0.1.2",
     "expo": "^35.0.0",
     "firebase": "^7.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "native-base": "^2.13.8",
     "react": "16.8.3",
     "react-dom": "16.8.3",
